@@ -5,6 +5,9 @@ import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Material from '@primeng/themes/material';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,5 +16,12 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideEffects(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Material,
+        options: { darkModeSelector: false },
+      },
+    }),
   ],
 };
