@@ -11,13 +11,15 @@ import Material from '@primeng/themes/material';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
+import { MessageService } from 'primeng/api';
+import { effects, reducers } from './store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore(),
-    provideEffects(),
+    provideStore(reducers),
+    provideEffects(effects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideAnimationsAsync(),
     providePrimeNG({
@@ -36,5 +38,6 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslocoHttpLoader,
     }),
+    MessageService,
   ],
 };
