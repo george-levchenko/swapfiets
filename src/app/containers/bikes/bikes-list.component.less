@@ -1,0 +1,48 @@
+@import (reference) '../../../styles/reference';
+
+.bikes-list-container {
+  padding: 20px;
+  height: 100%;
+}
+
+.search-box {
+  width: 300px;
+  margin: 0 auto 1rem;
+
+  h3 {
+    margin: 0 5px 5px 5px;
+  }
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.bike-card {
+  flex: 1 1 calc(20% - 20px);
+  max-width: 300px;
+
+  h3 {
+    min-height: 3rem;
+  }
+}
+
+.bike-thumbnail {
+  text-align: center;
+}
+
+.empty-page-image {
+  margin-top: 70px;
+  opacity: 0.4;
+  transform: rotate(-5deg);
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

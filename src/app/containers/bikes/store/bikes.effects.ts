@@ -4,13 +4,20 @@ import { catchError, exhaustMap, map, of } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import * as BikesActions from './bikes.actions';
 import { BikesService } from '../../../utils/services/bikes.service';
-import { Bike } from '../../../models/bike.interface';
+import { Bike } from '../../../models/interfaces/bike.interface';
 
 @Injectable()
 export class BikesEffects {
   private readonly actions$ = inject(Actions);
   private readonly bikesService = inject(BikesService);
   private readonly messageService = inject(MessageService);
+
+  setCity$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(BikesActions.setCity),
+      map(({ city }) => BikesActions.getBikes({ city }))
+    );
+  });
 
   getBikes$ = createEffect(() => {
     return this.actions$.pipe(

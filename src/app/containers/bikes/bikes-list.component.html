@@ -1,1 +1,48 @@
-<p>bikes-list works!</p>
+<div class="bikes-list-container">
+  <div class="search-box">
+    <h3>Find a bike in your city:</h3>
+    <p-select
+      [options]="cities"
+      [ngModel]="selectedCity()"
+      (ngModelChange)="cityChanged($event)"
+      [filter]="true"
+      placeholder="Select City"
+      fluid>
+    </p-select>
+  </div>
+
+  @if (!loading()) {
+    <div class="cards-container">
+      @for (bike of bikes(); track bike.id) {
+        <p-card class="bike-card">
+          <div class="bike-thumbnail">
+            @if (bike.thumb) {
+              <img [ngSrc]="bike.thumb" alt="{{ bike.title }}" width="200" height="200" priority />
+            } @else {
+              <img ngSrc="/icons/no-image.png" alt="{{ bike.title }}" width="200" height="200" priority />
+            }
+          </div>
+
+          <h3 [pTooltip]="bike.title?.length! > 35 ? bike.title : ''">
+            {{ bike.title | ellipsis: 35 }}
+          </h3>
+          <p [pTooltip]="bike.stolen_location?.length! > 25 ? bike.stolen_location : ''">
+            <i class="pi pi-map-marker"></i> {{ bike.stolen_location | ellipsis: 25 }}
+          </p>
+        </p-card>
+      } @empty {
+        <img
+          class="empty-page-image"
+          ngSrc="/icons/bike-background.png"
+          alt="Just Bike"
+          width="325"
+          height="200"
+          priority />
+      }
+    </div>
+  } @else {
+    <div class="spinner-container">
+      <p-progress-spinner ariaLabel="loading" />
+    </div>
+  }
+</div>

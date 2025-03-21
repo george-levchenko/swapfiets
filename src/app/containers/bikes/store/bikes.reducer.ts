@@ -1,14 +1,17 @@
-import { Bike } from '../../../models/bike.interface';
+import { Bike } from '../../../models/interfaces/bike.interface';
 import { createReducer, on } from '@ngrx/store';
 import * as BikesActions from './bikes.actions';
+import { AvailableCityType } from '../../../models/constants/available-city.enum';
 
 export interface BikesState {
+  city: AvailableCityType | null;
   bikes: Bike[];
   selectedBike: Bike | null;
   loading: boolean;
 }
 
 const initialState: BikesState = {
+  city: null,
   bikes: [],
   selectedBike: null,
   loading: false,
@@ -16,7 +19,20 @@ const initialState: BikesState = {
 
 export const bikesReducer = createReducer(
   initialState,
-  on(BikesActions.getBikes, (state: BikesState): BikesState => ({ ...state, loading: true })),
+  on(
+    BikesActions.setCity,
+    (state: BikesState, { city }): BikesState => ({
+      ...state,
+      city,
+    })
+  ),
+  on(
+    BikesActions.getBikes,
+    (state: BikesState): BikesState => ({
+      ...state,
+      loading: true,
+    })
+  ),
   on(
     BikesActions.getBikesSuccess,
     (state: BikesState, { bikes }): BikesState => ({

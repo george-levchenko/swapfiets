@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Bike } from '../../models/bike.interface';
+import { Bike } from '../../models/interfaces/bike.interface';
 
 @Injectable({ providedIn: 'root' })
 export class BikesService {
