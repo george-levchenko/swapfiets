@@ -4,4 +4,7 @@ export interface Bike {
   large_img: string;
   title: string;
   stolen_location: string;
+  manufacturer_name: string;
+  frame_model: string;
+  frame_colors: string[];
 }

@@ -9,3 +9,4 @@ export const getBikesSuccess = createAction('[Bikes] Get Bikes Success', props<{
 
 export const getBikeDetails = createAction('[Bikes] Get Bike Details', props<{ id: number }>());
 export const getBikeDetailsSuccess = createAction('[Bikes] Get Bike Details Success', props<{ selectedBike: Bike }>());
+export const cleanBikeDetails = createAction('[Bikes] Clean Details');

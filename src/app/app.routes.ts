@@ -9,12 +9,11 @@ export const routes: Routes = [
   {
     path: 'bikes',
     loadComponent: () => import('./containers/bikes/bikes-list.component').then(m => m.BikesListComponent),
-    children: [
-      {
-        path: ':bike-name',
-        loadComponent: () => import('./containers/bikes/bike-details/bike-details.component').then(m => m.BikeDetailsComponent),
-      },
-    ],
+    pathMatch: 'full',
+  },
+  {
+    path: 'bikes/details/:id',
+    loadComponent: () => import('./containers/bikes/bike-details/bike-details.component').then(m => m.BikeDetailsComponent),
   },
   {
     path: '**',

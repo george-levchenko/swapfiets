@@ -49,5 +49,6 @@ export const bikesReducer = createReducer(
       selectedBike,
       loading: false,
     })
-  )
+  ),
+  on(BikesActions.cleanBikeDetails, (state: BikesState): BikesState => ({ ...state, selectedBike: null }))
 );

@@ -14,7 +14,7 @@
   @if (!loading()) {
     <div class="cards-container">
       @for (bike of bikes(); track bike.id) {
-        <p-card class="bike-card">
+        <p-card class="bike-card" (click)="goToDetails(bike.id)">
           <div class="bike-thumbnail">
             @if (bike.thumb) {
               <img [ngSrc]="bike.thumb" alt="{{ bike.title }}" width="200" height="200" priority />
@@ -23,10 +23,10 @@
             }
           </div>
 
-          <h3 [pTooltip]="bike.title?.length! > 35 ? bike.title : ''">
+          <h3 [pTooltip]="bike.title.length > 35 ? bike.title : ''">
             {{ bike.title | ellipsis: 35 }}
           </h3>
-          <p [pTooltip]="bike.stolen_location?.length! > 25 ? bike.stolen_location : ''">
+          <p [pTooltip]="bike.stolen_location.length > 25 ? bike.stolen_location : ''">
             <i class="pi pi-map-marker"></i> {{ bike.stolen_location | ellipsis: 25 }}
           </p>
         </p-card>

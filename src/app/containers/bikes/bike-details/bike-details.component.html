@@ -1,1 +1,53 @@
-<p>bike-details works!</p>
+@if (!loading() && selectedBike()) {
+  <p-card class="bike-details-wrapper">
+    <p-breadcrumb [model]="breadcrumbItems"></p-breadcrumb>
+    <div class="bike-details-container">
+      <div class="bike-image-container">
+        <img
+          [ngSrc]="selectedBike()!.large_img ? selectedBike()!.large_img : '/icons/no-image.png'"
+          [alt]="selectedBike()!.title"
+          class="bike-image"
+          width="400"
+          height="400"
+          priority />
+      </div>
+
+      <div class="bike-info">
+        <h2>{{ selectedBike()!.title }}</h2>
+        <p class="bike-location"><b>Location:</b> {{ selectedBike()!.stolen_location }}</p>
+        <p class="bike-description"><b>Brand:</b> {{ selectedBike()!.manufacturer_name }}</p>
+        <p class="bike-description"><b>Model:</b> {{ selectedBike()!.frame_model }}</p>
+        <p class="bike-description"><b>Colors:</b> {{ selectedBike()!.frame_colors.join(', ') }}</p>
+      </div>
+    </div>
+  </p-card>
+} @else {
+  <p-card class="bike-details-wrapper">
+    <div class="skeleton-breadcrumb">
+      <p-skeleton width="30%" height="2rem"></p-skeleton>
+    </div>
+
+    <div class="bike-details-container">
+      <div class="bike-image-container">
+        <p-skeleton width="300px" height="300px"></p-skeleton>
+      </div>
+
+      <div class="bike-info">
+        <p-skeleton width="80%" height="2rem" [style]="{ 'margin-bottom': '1rem', 'margin-left': '3rem' }"></p-skeleton>
+        <p-skeleton
+          width="60%"
+          height="1.5rem"
+          [style]="{ 'margin-bottom': '0.5rem', 'margin-left': '3rem' }"></p-skeleton>
+        <p-skeleton
+          width="70%"
+          height="1.5rem"
+          [style]="{ 'margin-bottom': '0.5rem', 'margin-left': '3rem' }"></p-skeleton>
+        <p-skeleton
+          width="65%"
+          height="1.5rem"
+          [style]="{ 'margin-bottom': '0.5rem', 'margin-left': '3rem' }"></p-skeleton>
+        <p-skeleton width="75%" height="1.5rem" [style]="{ 'margin-left': '3rem' }"></p-skeleton>
+      </div>
+    </div>
+  </p-card>
+}

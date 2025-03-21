@@ -11,6 +11,7 @@ import { AvailableCity, AvailableCityType } from '../../models/constants/availab
 import { EllipsisPipe } from '../../utils/pipes/ellipsis.pipe';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { Tooltip } from 'primeng/tooltip';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-bikes-list',
@@ -20,6 +21,8 @@ import { Tooltip } from 'primeng/tooltip';
 })
 export class BikesListComponent {
   private readonly store = inject(Store);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
   protected readonly cities: AvailableCity[] = Object.values(AvailableCity);
 
@@ -29,5 +32,9 @@ export class BikesListComponent {
 
   cityChanged(city: AvailableCityType): void {
     this.store.dispatch(setCity({ city }));
+  }
+
+  goToDetails(id: number): void {
+    this.router.navigate([`./details/${id}`], { relativeTo: this.route });
   }
 }
