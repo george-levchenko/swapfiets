@@ -27,10 +27,10 @@ export class BikeDetailsComponent implements OnInit, OnDestroy {
   private readonly translocoService = inject(TranslocoService);
   private readonly titleCasePipe = inject(TitleCasePipe);
 
-  protected breadcrumbItems: WritableSignal<{ label: string; routerLink?: string[] }[]> = signal([]);
+  breadcrumbItems: WritableSignal<{ label: string; routerLink?: string[] }[]> = signal([]);
 
-  protected readonly selectedBike: Signal<Bike | null> = this.store.selectSignal(selectSelectedBike);
-  protected readonly loading: Signal<boolean> = this.store.selectSignal(selectBikesLoading);
+  readonly selectedBike: Signal<Bike | null> = this.store.selectSignal(selectSelectedBike);
+  readonly loading: Signal<boolean> = this.store.selectSignal(selectBikesLoading);
 
   ngOnInit(): void {
     this.store.dispatch(getBikeDetails({ id: this.route.snapshot.params['id'] }));

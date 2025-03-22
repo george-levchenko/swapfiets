@@ -23,8 +23,8 @@ export class HeaderComponent implements OnInit {
 
   protected readonly languages = languages;
 
-  protected readonly selectedLanguage = signal('');
-  protected readonly popover = viewChild<Popover>('popover');
+  readonly selectedLanguage = signal('');
+  readonly popover = viewChild<Popover>('popover');
 
   ngOnInit() {
     this.selectedLanguage.set(this.translocoService.getActiveLang());

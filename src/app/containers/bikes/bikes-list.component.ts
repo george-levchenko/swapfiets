@@ -27,11 +27,11 @@ export class BikesListComponent {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
-  protected readonly cities: CitiesEnum[] = Object.values(CitiesEnum);
+  readonly cities: CitiesEnum[] = Object.values(CitiesEnum);
 
-  protected readonly selectedCity: Signal<CitiesType | null> = this.store.selectSignal(selectCity);
-  protected readonly bikes: Signal<Bike[]> = this.store.selectSignal(selectBikes);
-  protected readonly loading: Signal<boolean> = this.store.selectSignal(selectBikesLoading);
+  readonly selectedCity: Signal<CitiesType | null> = this.store.selectSignal(selectCity);
+  readonly bikes: Signal<Bike[]> = this.store.selectSignal(selectBikes);
+  readonly loading: Signal<boolean> = this.store.selectSignal(selectBikesLoading);
 
   cityChanged(city: CitiesType): void {
     this.store.dispatch(setCity({ city }));
