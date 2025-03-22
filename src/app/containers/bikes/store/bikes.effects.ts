@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import * as BikesActions from './bikes.actions';
-import { BikesService } from '../../../utils/services/bikes.service';
 import { Bike } from '../../../models/interfaces/bike.interface';
+import { BikesService } from '../../../utils/services-api/bikes.service';
 
 @Injectable()
 export class BikesEffects {

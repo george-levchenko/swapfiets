@@ -1,21 +1,19 @@
 <div class="home-container">
   <video
+    #video
     src="https://framerusercontent.com/assets/BWOyc7IZUM6ZZ9ipx984etD9lIk.mp4"
-    loop
-    preload="auto"
     poster="https://framerusercontent.com/images/ZFDviB8YaX05J26N4L8twvGtLg.jpg"
+    preload="auto"
     muted
     playsinline
-    autoplay></video>
+    autoplay
+    loop></video>
 
   <div class="home-info">
-    <h1>
-      Welcome to <br />
-      worry-free biking
-    </h1>
+    <h1>{{ 'home.welcome-p1' | transloco | capitalize }}<br />{{ 'home.welcome-p2' | transloco }}</h1>
     <p-button
       (click)="goToBikes()"
-      label="See Bikes"
+      [label]="'home.see-bikes' | transloco | titlecase"
       [rounded]="true"
       icon="pi pi-arrow-right"
       iconPos="right"

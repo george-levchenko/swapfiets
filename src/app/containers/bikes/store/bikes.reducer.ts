@@ -1,10 +1,10 @@
 import { Bike } from '../../../models/interfaces/bike.interface';
 import { createReducer, on } from '@ngrx/store';
 import * as BikesActions from './bikes.actions';
-import { AvailableCityType } from '../../../models/constants/available-city.enum';
+import { CitiesType } from '../../../models/constants/cities.enum';
 
 export interface BikesState {
-  city: AvailableCityType | null;
+  city: CitiesType | null;
   bikes: Bike[];
   selectedBike: Bike | null;
   loading: boolean;

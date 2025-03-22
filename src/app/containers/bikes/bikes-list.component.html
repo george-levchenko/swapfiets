@@ -1,12 +1,12 @@
 <div class="bikes-list-container">
   <div class="search-box">
-    <h3>Find a bike in your city:</h3>
+    <h3>{{ 'bikes.find-bike' | transloco | capitalize }}:</h3>
     <p-select
       [options]="cities"
       [ngModel]="selectedCity()"
       (ngModelChange)="cityChanged($event)"
       [filter]="true"
-      placeholder="Select City"
+      [placeholder]="'bikes.select-city' | transloco | titlecase"
       fluid>
     </p-select>
   </div>

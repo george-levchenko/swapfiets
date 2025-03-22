@@ -1,1 +1,25 @@
-{}
+{
+  "header": {
+    "bikes": "bikes",
+    "language": "language"
+  },
+  "footer": {
+    "no-rights-reserved": "no rights reserved"
+  },
+  "home": {
+    "see-bikes": "see bikes",
+    "welcome-p1": "welcome to",
+    "welcome-p2": "worry-free biking"
+  },
+  "bikes": {
+    "find-bike": "find a bike in your city",
+    "select-city": "select city",
+    "home": "home",
+    "bikes-list": "bikes list",
+    "bike-details": "bike details",
+    "location": "location",
+    "brand": "brand",
+    "model": "model",
+    "colors": "colors"
+  }
+}

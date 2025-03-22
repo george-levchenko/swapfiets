@@ -1,1 +1,25 @@
-{}
+{
+  "header": {
+    "bikes": "fietsen",
+    "language": "taal"
+  },
+  "footer": {
+    "no-rights-reserved": "Geen rechten voorbehouden"
+  },
+  "home": {
+    "see-bikes": "zie fietsen",
+    "welcome-p1": "welkom bij",
+    "welcome-p2": "zorgeloos fietsen"
+  },
+  "bikes": {
+    "find-bike": "Vind een fiets in jouw stad",
+    "select-city": "selecteer stad",
+    "home": "huis",
+    "bikes-list": "fietsen lijst",
+    "bike-details": "fiets details",
+    "location": "locatie",
+    "brand": "merk",
+    "model": "model",
+    "colors": "kleuren"
+  }
+}

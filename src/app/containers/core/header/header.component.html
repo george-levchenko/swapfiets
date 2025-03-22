@@ -11,17 +11,38 @@
           class="brand-logo" />
       </a>
 
-      <a class="nav-bar-link" routerLink="/bikes" routerLinkActive="active-link" aria-label="Bikes">Bikes </a>
+      <a class="nav-bar-link" routerLink="/bikes" routerLinkActive="active-link" aria-label="Bikes"
+        >{{ 'header.bikes' | transloco | titlecase }}
+      </a>
     </nav>
 
     <div class="nav-tools-container">
       <i
         class="pi pi-globe"
-        (click)="changeLanguage()"
-        (keydown.enter)="changeLanguage()"
+        (click)="popover.toggle($event)"
+        (keydown.enter)="popover.toggle($event)"
         role="button"
         tabindex="0"
         aria-label="Change language"></i>
     </div>
   </div>
 </div>
+
+<p-popover #popover dismissable="true">
+  <ng-template pTemplate="content">
+    <div class="radio-buttons-container">
+      <h4>{{ 'header.language' | transloco | titlecase }}</h4>
+      @for (language of languages; track language) {
+        <div class="radio-button">
+          <p-radioButton
+            [id]="language + '-lang'"
+            name="language"
+            [value]="language.code"
+            [ngModel]="selectedLanguage()"
+            (ngModelChange)="changeLanguage($event)"></p-radioButton>
+          <label [for]="language + '-lang'">{{ language.language }} </label>
+        </div>
+      }
+    </div>
+  </ng-template>
+</p-popover>
