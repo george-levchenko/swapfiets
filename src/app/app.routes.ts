@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('./containers/dashboard/dashboard.component').then(c => c.DashboardComponent),
+    loadComponent: () => import('./containers/home/home.component').then(c => c.HomeComponent),
   },
   {
     path: 'bikes',

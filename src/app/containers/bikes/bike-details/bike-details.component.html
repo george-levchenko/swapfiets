@@ -4,7 +4,7 @@
     <div class="bike-details-container">
       <div class="bike-image-container">
         <img
-          [ngSrc]="selectedBike()!.large_img ? selectedBike()!.large_img : '/icons/no-image.png'"
+          [ngSrc]="selectedBike()!.large_img || '/icons/no-image.png'"
           [alt]="selectedBike()!.title"
           class="bike-image"
           width="400"
@@ -15,9 +15,9 @@
       <div class="bike-info">
         <h2>{{ selectedBike()!.title }}</h2>
         <p class="bike-location"><b>Location:</b> {{ selectedBike()!.stolen_location }}</p>
-        <p class="bike-description"><b>Brand:</b> {{ selectedBike()!.manufacturer_name }}</p>
-        <p class="bike-description"><b>Model:</b> {{ selectedBike()!.frame_model }}</p>
-        <p class="bike-description"><b>Colors:</b> {{ selectedBike()!.frame_colors.join(', ') }}</p>
+        <p class="bike-description"><b>Brand:</b> {{ selectedBike()!.manufacturer_name || '-' }}</p>
+        <p class="bike-description"><b>Model:</b> {{ selectedBike()!.frame_model || '-' }}</p>
+        <p class="bike-description"><b>Colors:</b> {{ selectedBike()!.frame_colors?.join(', ') || '-' }}</p>
       </div>
     </div>
   </p-card>

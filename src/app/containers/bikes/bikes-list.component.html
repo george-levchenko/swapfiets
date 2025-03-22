@@ -16,11 +16,12 @@
       @for (bike of bikes(); track bike.id) {
         <p-card class="bike-card" (click)="goToDetails(bike.id)">
           <div class="bike-thumbnail">
-            @if (bike.thumb) {
-              <img [ngSrc]="bike.thumb" alt="{{ bike.title }}" width="200" height="200" priority />
-            } @else {
-              <img ngSrc="/icons/no-image.png" alt="{{ bike.title }}" width="200" height="200" priority />
-            }
+            <img
+              [ngSrc]="bike.thumb || '/icons/no-image.png'"
+              alt="{{ bike.title }}"
+              width="200"
+              height="200"
+              priority />
           </div>
 
           <h3 [pTooltip]="bike.title.length > 35 ? bike.title : ''">

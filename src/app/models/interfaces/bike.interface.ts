@@ -1,10 +1,10 @@
 export interface Bike {
   id: number;
-  thumb: string;
-  large_img: string;
+  thumb: string | null;
+  large_img: string | null;
   title: string;
   stolen_location: string;
-  manufacturer_name: string;
-  frame_model: string;
-  frame_colors: string[];
+  manufacturer_name: string | null;
+  frame_model: string | null;
+  frame_colors: string[] | null;
 }

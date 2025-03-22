@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BikesListComponent } from './bikes-list.component';
 import { Store } from '@ngrx/store';
+import { RouterModule } from '@angular/router';
 
 describe('BikesListComponent', () => {
   let component: BikesListComponent;
@@ -14,7 +15,7 @@ describe('BikesListComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [BikesListComponent],
+      imports: [BikesListComponent, RouterModule.forRoot([])],
       providers: [{ provide: Store, useValue: storeStub }],
     }).compileComponents();
 
