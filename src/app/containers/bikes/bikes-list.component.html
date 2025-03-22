@@ -1,20 +1,25 @@
 <div class="bikes-list-container">
   <div class="search-box">
-    <h3>{{ 'bikes.find-bike' | transloco | capitalize }}:</h3>
+    <h3 id="bike-search-label">{{ 'bikes.find-bike' | transloco | capitalize }}:</h3>
     <p-select
       [options]="cities"
       [ngModel]="selectedCity()"
       (ngModelChange)="cityChanged($event)"
       [filter]="true"
       [placeholder]="'bikes.select-city' | transloco | titlecase"
-      fluid>
-    </p-select>
+      fluid
+      aria-labelledby="bike-search-label"></p-select>
   </div>
 
   @if (!loading()) {
     <div class="cards-container">
       @for (bike of bikes(); track bike.id) {
-        <p-card class="bike-card" (click)="goToDetails(bike.id)">
+        <p-card
+          class="bike-card"
+          role="button"
+          tabindex="0"
+          (click)="goToDetails(bike.id)"
+          (keydown.enter)="goToDetails(bike.id)">
           <div class="bike-thumbnail">
             <img
               [ngSrc]="bike.thumb || '/icons/no-image.png'"
@@ -28,7 +33,7 @@
             {{ bike.title | ellipsis: 35 }}
           </h3>
           <p [pTooltip]="bike.stolen_location.length > 25 ? bike.stolen_location : ''">
-            <i class="pi pi-map-marker"></i> {{ bike.stolen_location | ellipsis: 25 }}
+            <i class="pi pi-map-marker" aria-hidden="true"></i> {{ bike.stolen_location | ellipsis: 25 }}
           </p>
         </p-card>
       } @empty {

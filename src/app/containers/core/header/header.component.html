@@ -30,7 +30,7 @@
 
 <p-popover #popover dismissable="true">
   <ng-template pTemplate="content">
-    <div class="radio-buttons-container">
+    <div class="radio-buttons-container" role="radiogroup" aria-labelledby="language-header">
       <h4>{{ 'header.language' | transloco | titlecase }}</h4>
       @for (language of languages; track language) {
         <div class="radio-button">

@@ -1,6 +1,6 @@
 @if (!loading() && selectedBike()) {
-  <p-card class="bike-details-wrapper">
-    <p-breadcrumb [model]="breadcrumbItems()"></p-breadcrumb>
+  <p-card class="bike-details-wrapper" role="region" aria-labelledby="bikeTitle">
+    <p-breadcrumb [model]="breadcrumbItems()" aria-label="Breadcrumb Navigation"></p-breadcrumb>
     <div class="bike-details-container">
       <div class="bike-image-container">
         <img
@@ -13,24 +13,25 @@
       </div>
 
       <div class="bike-info">
-        <h2>{{ selectedBike()!.title }}</h2>
+        <h2 id="bikeTitle">{{ selectedBike()!.title }}</h2>
         <p class="bike-location">
-          <b>{{ 'bikes.location' | transloco | titlecase }}:</b> {{ selectedBike()!.stolen_location }}
+          <strong>{{ 'bikes.location' | transloco | titlecase }}:</strong> {{ selectedBike()!.stolen_location }}
         </p>
         <p class="bike-description">
-          <b>{{ 'bikes.brand' | transloco | titlecase }}:</b> {{ selectedBike()!.manufacturer_name || '-' }}
+          <strong>{{ 'bikes.brand' | transloco | titlecase }}:</strong> {{ selectedBike()!.manufacturer_name || '-' }}
         </p>
         <p class="bike-description">
-          <b>{{ 'bikes.model' | transloco | titlecase }}:</b> {{ selectedBike()!.frame_model || '-' }}
+          <strong>{{ 'bikes.model' | transloco | titlecase }}:</strong> {{ selectedBike()!.frame_model || '-' }}
         </p>
         <p class="bike-description">
-          <b>{{ 'bikes.colors' | transloco | titlecase }}:</b> {{ selectedBike()!.frame_colors?.join(', ') || '-' }}
+          <strong>{{ 'bikes.colors' | transloco | titlecase }}:</strong>
+          {{ selectedBike()!.frame_colors?.join(', ') || '-' }}
         </p>
       </div>
     </div>
   </p-card>
 } @else {
-  <p-card class="bike-details-wrapper">
+  <p-card class="bike-details-wrapper" role="region" aria-busy="true">
     <div class="skeleton-breadcrumb">
       <p-skeleton width="30%" height="2rem"></p-skeleton>
     </div>
