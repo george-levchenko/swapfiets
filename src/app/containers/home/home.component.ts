@@ -5,6 +5,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { TitleCasePipe } from '@angular/common';
 import { CapitalizePipe } from '../../utils/pipes/capitalize/capitalize.pipe';
 import { catchError, EMPTY, from, fromEvent, tap } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ import { catchError, EMPTY, from, fromEvent, tap } from 'rxjs';
   styleUrl: './home.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+@UntilDestroy()
 export class HomeComponent implements AfterViewInit {
   private readonly router = inject(Router);
 
@@ -26,6 +28,7 @@ export class HomeComponent implements AfterViewInit {
   playVideo(): void {
     from(this.video()!.nativeElement.play())
       .pipe(
+        untilDestroyed(this),
         tap(() => this.isVideoPlaying.set(true)),
         catchError(error => {
           console.error('Manual play prevented:', error);
@@ -39,6 +42,7 @@ export class HomeComponent implements AfterViewInit {
     // Attempt autoplay on landing.
     from(this.video()!.nativeElement.play())
       .pipe(
+        untilDestroyed(this),
         tap(() => this.isVideoPlaying.set(true)),
         catchError(error => {
           console.warn('Autoplay was prevented:', error);
@@ -51,7 +55,10 @@ export class HomeComponent implements AfterViewInit {
 
     // Listen for the 'play'
     fromEvent(this.video()!.nativeElement, 'play')
-      .pipe(tap(() => this.isVideoPlaying.set(true)))
+      .pipe(
+        untilDestroyed(this),
+        tap(() => this.isVideoPlaying.set(true))
+      )
       .subscribe();
   }
 }
