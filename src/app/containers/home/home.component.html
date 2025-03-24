@@ -12,6 +12,18 @@
     Your browser does not support the video
   </video>
 
+  <!-- Button to start video shown only when video isn't playing -->
+  @if (!isVideoPlaying()) {
+    <p-button
+      class="play-button"
+      icon="pi pi-play-circle"
+      severity="success"
+      size="large"
+      [rounded]="true"
+      (click)="playVideo()"
+      [attr.aria-label]="'Start Video'"></p-button>
+  }
+
   <div class="home-info">
     <h1>{{ 'home.welcome-p1' | transloco | capitalize }}<br />{{ 'home.welcome-p2' | transloco }}</h1>
     <p-button
