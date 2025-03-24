@@ -2,9 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { LocalStorageService } from './utils/services/local-storage.service';
 import { RouterModule } from '@angular/router';
-import en from '../assets/i18n/en.json';
-import nl from '../assets/i18n/nl.json';
-import { TranslocoService, TranslocoTestingModule } from '@jsverse/transloco';
+import { TranslocoService } from '@jsverse/transloco';
+import { getTranslocoModule } from '../tests/unit/transloco-testing.module';
 
 describe('AppComponent', () => {
   let localStorageServiceSpy: jasmine.SpyObj<LocalStorageService>;
@@ -14,17 +13,7 @@ describe('AppComponent', () => {
     const localStorageSpy = jasmine.createSpyObj('LocalStorageService', ['get']);
 
     await TestBed.configureTestingModule({
-      imports: [
-        AppComponent,
-        RouterModule.forRoot([]),
-        TranslocoTestingModule.forRoot({
-          langs: { en, nl },
-          translocoConfig: {
-            availableLangs: ['en', 'nl'],
-            defaultLang: 'en',
-          },
-        }),
-      ],
+      imports: [AppComponent, RouterModule.forRoot([]), getTranslocoModule()],
       providers: [{ provide: LocalStorageService, useValue: localStorageSpy }],
     }).compileComponents();
 

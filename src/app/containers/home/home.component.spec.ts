@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { TranslocoTestingModule } from '@jsverse/transloco';
+import { getTranslocoModule } from '../../../tests/unit/transloco-testing.module';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,17 +12,7 @@ describe('HomeComponent', () => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      imports: [
-        HomeComponent,
-        RouterModule.forRoot([]),
-        TranslocoTestingModule.forRoot({
-          langs: { en: {}, nl: {} },
-          translocoConfig: {
-            availableLangs: ['en', 'nl'],
-            defaultLang: 'en',
-          },
-        }),
-      ],
+      imports: [HomeComponent, RouterModule.forRoot([]), getTranslocoModule()],
       providers: [{ provide: Router, useValue: routerSpy }],
     }).compileComponents();
 

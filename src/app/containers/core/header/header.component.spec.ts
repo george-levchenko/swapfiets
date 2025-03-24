@@ -3,7 +3,8 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header.component';
 import { LocalStorageService } from '../../../utils/services/local-storage.service';
 import { Popover } from 'primeng/popover';
-import { TranslocoService, TranslocoTestingModule } from '@jsverse/transloco';
+import { TranslocoService } from '@jsverse/transloco';
+import { getTranslocoModule } from '../../../../tests/unit/transloco-testing.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -17,17 +18,7 @@ describe('HeaderComponent', () => {
     popoverMock = { hide: jasmine.createSpy('hide') } as unknown as Popover;
 
     await TestBed.configureTestingModule({
-      imports: [
-        HeaderComponent,
-        RouterModule.forRoot([]),
-        TranslocoTestingModule.forRoot({
-          langs: { en: {}, nl: {} },
-          translocoConfig: {
-            availableLangs: ['en', 'nl'],
-            defaultLang: 'en',
-          },
-        }),
-      ],
+      imports: [HeaderComponent, RouterModule.forRoot([]), getTranslocoModule()],
       providers: [{ provide: LocalStorageService, useValue: localStorageService }],
     }).compileComponents();
 
@@ -40,8 +31,7 @@ describe('HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
 
-    // Override the readonly popover property using Object.defineProperty
-    // so that calling component.popover() returns our popoverMock.
+    // Override the readonly popover so that calling component.popover() returns our popoverMock.
     Object.defineProperty(component, 'popover', {
       value: () => popoverMock,
     });
