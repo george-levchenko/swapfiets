@@ -1,0 +1,17 @@
+<p-card
+  class="bike-card"
+  role="button"
+  tabindex="0"
+  (click)="bikeClicked.emit(bike().id)"
+  (keydown.enter)="bikeClicked.emit(bike().id)">
+  <div class="bike-thumbnail">
+    <img [ngSrc]="bike().thumb || '/icons/no-image.png'" alt="{{ bike().title }}" width="200" height="200" priority />
+  </div>
+
+  <h3 [pTooltip]="bike().title.length > 35 ? bike().title : ''">
+    {{ bike().title | ellipsis: 35 }}
+  </h3>
+  <p [pTooltip]="bike().stolen_location.length > 25 ? bike().stolen_location : ''">
+    <i class="pi pi-map-marker" aria-hidden="true"></i> {{ bike().stolen_location | ellipsis: 25 }}
+  </p>
+</p-card>

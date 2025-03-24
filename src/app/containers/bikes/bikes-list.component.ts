@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
-import { Card } from 'primeng/card';
 import { Select } from 'primeng/select';
 import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,16 +7,15 @@ import { Store } from '@ngrx/store';
 import { selectBikes, selectBikesLoading, selectCity } from './store/bikes.selectors';
 import { setCity } from './store/bikes.actions';
 import { CitiesEnum, CitiesType } from '../../models/constants/cities.enum';
-import { EllipsisPipe } from '../../utils/pipes/ellipsis/ellipsis.pipe';
 import { ProgressSpinner } from 'primeng/progressspinner';
-import { Tooltip } from 'primeng/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { CapitalizePipe } from '../../utils/pipes/capitalize/capitalize.pipe';
+import { BikeCardComponent } from './bike-card/bike-card.component';
 
 @Component({
   selector: 'app-bikes-list',
-  imports: [Card, Select, NgOptimizedImage, FormsModule, EllipsisPipe, ProgressSpinner, Tooltip, TranslocoPipe, TitleCasePipe, CapitalizePipe],
+  imports: [Select, NgOptimizedImage, FormsModule, ProgressSpinner, TranslocoPipe, TitleCasePipe, CapitalizePipe, BikeCardComponent],
   templateUrl: './bikes-list.component.html',
   styleUrl: './bikes-list.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
